@@ -35,11 +35,9 @@ async function fetchData(obj, url) {
    let trendingMovies; 
    trendingMovies = await fetchData(trendingMovies, trendingMoviesUrl)
    console.log(trendingMovies.results)
-   for(var i = 0; i < trendingMovies.results.length; i++){
-      let trendingMoivePoster= trendingMovies.results[i].poster_path
-      console.log (trendingMoivePoster)
-      
-   }
-
+      for(var i = 0; i < 5; i++){
+         let trendingMoivePosterUrl = 'https://image.tmdb.org/t/p/w500/' + trendingMovies.results[i].poster_path
+         document.querySelector(".movie-poster"+ i).src = trendingMoivePosterUrl    
+      }
 }
 trendingBuildCarousel()
