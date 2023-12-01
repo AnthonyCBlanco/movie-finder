@@ -10,20 +10,6 @@ let movieQueryUrl = 'https://api.themoviedb.org/3/search/movie?query=' + movieQu
 
 // Function to convert fetch Data To Obj
 
-// function fetchToObj(obj, fetchURL){
-   
-//    fetch(fetchURL)
-//   .then(response => response.json())
-//   .then(data => {
-//    obj = data;
-    
-//    })
-//   .then(() => {
-//     console.log(obj);
-//    })
-//    .catch(err => console.error(err));
-// }
-
 
 async function fetchData(obj, url) {
    try {
