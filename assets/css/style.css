@@ -1,1 +1,11 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+.search-input{
+    min-width: 250px;
+    margin-right: 5px;
+    height: 30px;
+}
+
+#search-btn{
+    height: 30px;
+}
