@@ -41,12 +41,12 @@ const searchBtnEl = document.querySelector('#search-btn')
 
 async function searchForMovie(){ 
   var searchResultsContainer = document.querySelector('#search-results')
-
+  searchResultsContainer.innerHTML = ""
   var currentUrl = new URL(window.location.href);
   var searchTerm = document.querySelector('.search-input').value
   currentUrl.searchParams.set('searchTerm', searchTerm)
   window.history.replaceState({}, document.title, currentUrl)
-
+  document.querySelector('#search_results_title').textContent = searchTerm
 
   let searchUrl = 'https://api.themoviedb.org/3/search/movie?query=' + searchTerm + '&api_key=d49378c8d91fbf3feb27659eb9dad49e' 
   let searchData;

@@ -9,3 +9,7 @@
 #search-btn{
     height: 30px;
 }
+
+#search-results{
+    text-align: center;
+}
