@@ -54,7 +54,11 @@ async function searchForMovie(){
 
   for(var i=0; i < searchData.results.length; i++){
     var li = document.createElement('li')
+    var img = document.createElement('img')
     li.textContent = searchData.results[i].title
+    li.setAttribute('class', 'column is-one-quarter is')
+    img.src = 'https://image.tmdb.org/t/p/w500/' + searchData.results[i].poster_path
+    li.append(img)
     searchResultsContainer.append(li)
   }
 

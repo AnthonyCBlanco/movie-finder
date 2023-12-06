@@ -12,4 +12,26 @@
 
 #search-results{
     text-align: center;
+    align-content: center;
+    align-items: center;
+    
+}
+
+#search-results li{
+    text-align: center;
+    margin: 5px;
+    background-color: whitesmoke;  
+    height: 375px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+    display: block;
+}
+#search-results img{
+    margin-left: auto;
+    margin-right: auto;
+    
+    align-self: center;
+    display: block;
+    aspect-ratio: 2/3;
+    max-height: 315px;
 }
