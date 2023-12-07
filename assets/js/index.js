@@ -67,7 +67,7 @@ async function searchForMovie(){
 
 
 var currentPage = window.location.pathname
-if(currentPage.endsWith('index.html')){
+if(currentPage.endsWith('index.html') || currentPage.endsWith('movie-finder/')){
   trendingBuildCarousel()
   var homesearchBtnEl = document.querySelector('#search-btn-to-search')
   homesearchBtnEl.addEventListener('click', function(){
