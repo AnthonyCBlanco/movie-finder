@@ -1,4 +1,27 @@
  const TMDBapikey = 'd49378c8d91fbf3feb27659eb9dad49e'
+const ytApiKey = 'AIzaSyCmgrUIFOh3Uvspmi-xHKA5vEFRZ5LKwec'
+
+
+// Moving carousel for trending movies
+// const scrollers = document.querySelectorAll('.scroller');
+// if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+//   addAnimation();
+// }
+
+// function addAnimation(){
+//   scrollers.forEach((scroller) =>{
+//     scroller.setAttribute("data-animated", true);
+
+//     const scrollerInner = scroller.querySelector('.scroller_inner');
+//     const scrollerContent = Array.from(scrollerInner.children);
+
+//     scrollerContent.forEach(item => {
+//       const duplicatedItem = item.cloneNode(true);
+//       duplicatedItem.setAttribute('aria-hidden', true);
+//       scrollerInner.appendChild(duplicatedItem);
+//     });
+//   });
+// }
 
 // onClick Display movie details
 
@@ -27,7 +50,7 @@ async function fetchData(obj, url) {
    let trendingMovies; 
    trendingMovies = await fetchData(trendingMovies, trendingMoviesUrl)
    console.log(trendingMovies.results)
-      for(var i = 0; i < 6; i++){
+      for(var i = 0; i < 8; i++){
          let trendingMoivePosterUrl = 'https://image.tmdb.org/t/p/w500/' + trendingMovies.results[i].poster_path
          document.querySelector(".movie-poster"+i).src = trendingMoivePosterUrl    
       }
@@ -77,7 +100,3 @@ if(window.location.href.includes('search.html')){
       window.onload = searchForMovie
       })
 }
-
-
-
-
