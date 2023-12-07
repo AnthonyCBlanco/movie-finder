@@ -23,6 +23,7 @@ async function fetchData(obj, url) {
      throw error;
    }
  }
+
  // Builds Carousel Cards
  async function trendingBuildCarousel(){
    let trendingMoviesUrl = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=d49378c8d91fbf3feb27659eb9dad49e'
@@ -40,6 +41,7 @@ const searchBtnEl = document.querySelector('#search-btn')
 
 
 //searches for TMDB with input from search box
+
 async function searchForMovie(){ 
   var searchResultsContainer = document.querySelector('#search-results')
   searchResultsContainer.innerHTML = "" 
@@ -52,6 +54,7 @@ async function searchForMovie(){
   let searchUrl = 'https://api.themoviedb.org/3/search/movie?query=' + searchTerm + '&api_key=d49378c8d91fbf3feb27659eb9dad49e' 
   let searchData;
   searchData = await fetchData(searchData, searchUrl)
+
   // Error Messege If No Results Found
     if(searchData.results.length == 0){ 
       searchResultsContainer.textContent = ('Sorry, We Couldnt Find Anything Under That Name Please Try Again')
@@ -72,12 +75,14 @@ async function searchForMovie(){
 }
 
 // Fetchs details of Selected Movie And Builds The Details Page
-function fetchDetails(){
+function fetchDetails(movieId){
 
 }
 
 
-
+var movieDetails
+movieDetails = fetchData(movieDetails, 'https://api.themoviedb.org/3/movie/1003598?&api_key=d49378c8d91fbf3feb27659eb9dad49e')
+console.log(movieDetails)
 
 
 
@@ -95,6 +100,7 @@ if(currentPage.endsWith('index.html') || currentPage.endsWith('movie-finder/')){
     document.location.href = './search.html'
   })
 }
+
 // Only runs this code if on search page
 if(window.location.href.includes('search.html')){
     searchBtnEl.addEventListener('click', function(event){
