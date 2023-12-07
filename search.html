@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <title>Search Results</title>
+    </head>
+<body>
+  <header class="columns is-gapless has-background-warning is-justify-content-center">
+    <div class="level">
+      <div class="column is-flex">
+        <input class="input is-small search-input" type="text" placeholder="Search" id="searchinput">
+        <button id="search-btn" class="button">Search</button>
+      </div>
+      <div class="column is-full">
+        <h1 class="title level-item">Movie Finder!</h1>
+      </div>
+    </div>
+  </header>
+
+      <script src="./assets/js/index.js"></script>
+      <script src="./assets/js/search.js"></script>
+      <div class="has-text-centered m-2 ">
+        <h1>Results For: <span id="search_results_title"></span></h1>
+      </div>
+      <div class="container is-align-items-center is-multiline is-centered">
+        <ul id="search-results" class="columns is-multiline is-centered">
+
+            
+
+        </ul>
+      </div>
+</body>
+</html>
