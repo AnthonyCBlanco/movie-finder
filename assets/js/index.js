@@ -41,12 +41,12 @@ const searchBtnEl = document.querySelector('#search-btn')
 
 async function searchForMovie(){ 
   var searchResultsContainer = document.querySelector('#search-results')
-
+  searchResultsContainer.innerHTML = ""
   var currentUrl = new URL(window.location.href);
   var searchTerm = document.querySelector('.search-input').value
   currentUrl.searchParams.set('searchTerm', searchTerm)
   window.history.replaceState({}, document.title, currentUrl)
-
+  document.querySelector('#search_results_title').textContent = searchTerm
 
   let searchUrl = 'https://api.themoviedb.org/3/search/movie?query=' + searchTerm + '&api_key=d49378c8d91fbf3feb27659eb9dad49e' 
   let searchData;
@@ -54,7 +54,11 @@ async function searchForMovie(){
 
   for(var i=0; i < searchData.results.length; i++){
     var li = document.createElement('li')
+    var img = document.createElement('img')
     li.textContent = searchData.results[i].title
+    li.setAttribute('class', 'column is-one-quarter is')
+    img.src = 'https://image.tmdb.org/t/p/w500/' + searchData.results[i].poster_path
+    li.append(img)
     searchResultsContainer.append(li)
   }
 
