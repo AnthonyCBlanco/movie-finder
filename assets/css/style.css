@@ -1,1 +1,72 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+.search-input{
+    min-width: 250px;
+    margin-right: 5px;
+    height: 30px;
+}
+
+#search-btn{
+    height: 30px;
+}
+
+#search-results{
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    
+}
+
+#search-results li{
+    text-align: center;
+    margin: 5px;
+    background-color: whitesmoke;  
+    height: 375px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+    display: block;
+}
+#search-results img{
+    margin-left: auto;
+    margin-right: auto;
+    
+    align-self: center;
+    display: block;
+    aspect-ratio: 2/3;
+    max-height: 315px;
+}
+
+
+/*results page*/
+
+h1 {
+    width:100%;
+    background-color: white;
+    padding-left: 1%;
+}
+
+.top{
+    width:50%;
+    background-color: white;
+}
+
+#topcontent {
+    float:left;
+    display:inline-flex;
+}
+
+.label {
+    background-color: white;
+    padding-left: 10px;
+}
+
+.bottom {
+    width:10%;
+    background-color: white;
+    text-align: center;
+}
+
+#bottomcontent {
+    float:left;
+    display:inline-flex;
+}
