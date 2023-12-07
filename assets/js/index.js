@@ -72,12 +72,14 @@ async function searchForMovie(){
 }
 
 // Fetchs details of Selected Movie And Builds The Details Page
-function fetchDetails(){
+function fetchDetails(movieId){
 
 }
 
 
-
+var movieDetails
+movieDetails = fetchData(movieDetails, 'https://api.themoviedb.org/3/movie/1003598?&api_key=d49378c8d91fbf3feb27659eb9dad49e')
+console.log(movieDetails)
 
 
 
