@@ -1,27 +1,5 @@
  const TMDBapikey = 'd49378c8d91fbf3feb27659eb9dad49e'
-const ytApiKey = 'AIzaSyCmgrUIFOh3Uvspmi-xHKA5vEFRZ5LKwec'
-
-
-// Moving carousel for trending movies
-// const scrollers = document.querySelectorAll('.scroller');
-// if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
-//   addAnimation();
-// }
-
-// function addAnimation(){
-//   scrollers.forEach((scroller) =>{
-//     scroller.setAttribute("data-animated", true);
-
-//     const scrollerInner = scroller.querySelector('.scroller_inner');
-//     const scrollerContent = Array.from(scrollerInner.children);
-
-//     scrollerContent.forEach(item => {
-//       const duplicatedItem = item.cloneNode(true);
-//       duplicatedItem.setAttribute('aria-hidden', true);
-//       scrollerInner.appendChild(duplicatedItem);
-//     });
-//   });
-// }
+ const youtubeApiKey = 'AIzaSyCmgrUIFOh3Uvspmi-xHKA5vEFRZ5LKwec'
 
 // onClick Display movie details
 
@@ -53,7 +31,7 @@ async function fetchData(obj, url) {
    let trendingMovies; 
    trendingMovies = await fetchData(trendingMovies, trendingMoviesUrl)
    console.log(trendingMovies.results)
-      for(var i = 0; i < 12; i++){
+      for(var i = 0; i < 13; i++){
          let trendingMoivePosterUrl = 'https://image.tmdb.org/t/p/w500/' + trendingMovies.results[i].poster_path
          document.querySelector(".movie-poster"+i).src = trendingMoivePosterUrl  
          document.querySelector(".movie-poster"+i).setAttribute('data-movieID', trendingMovies.results[i].id)  
@@ -61,8 +39,6 @@ async function fetchData(obj, url) {
 }
 
 const searchBtnEl = document.querySelector('#search-btn')
-
-
 
 //searches for TMDB with input from search box
 
@@ -159,10 +135,21 @@ if(window.location.href.includes('search.html')){
       window.onload = searchForMovie
       })
 }
+
 // Only runds this code if on details page
 if(window.location.href.includes('details.html')){
   window.onload = fetchDetails
 }
+
+// Execute a search when the user presses the 'enter' key on the keyboard
+var input = document.getElementById("searchinput");
+
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("search-btn").click();
+  }
+});
 
 
 handlePosterClick()

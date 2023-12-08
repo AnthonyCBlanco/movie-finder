@@ -40,6 +40,11 @@ header {
     background-color: #34A0A4;
 }
 
+.result-title {
+    color: whitesmoke;
+    background-color: #1A759F;
+}
+
 /* .scroller {
     max-width: 600px;
     border: 3px solid lime;
