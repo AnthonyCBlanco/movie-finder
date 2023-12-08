@@ -111,7 +111,15 @@ if(window.location.href.includes('search.html')){
       window.onload = searchForMovie
       })
 }
+// Execute a search when the user presses a key on the keyboard
+var input = document.getElementById("searchinput");
 
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("search-btn").click();
+  }
+});
 
 
 
