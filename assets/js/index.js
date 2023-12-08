@@ -102,10 +102,12 @@ async function searchForMovie(){
 }
 
 // Fetchs details of Selected Movie And Builds The Details Page
-function fetchDetails(movieId){
+function fetchDetails(){
   const movieEl = document.querySelector('.poster')
   const descriptionEl = document.querySelector('.description')
   const castEl = document.querySelector('.cast')
+  var params = new URLSearchParams(document.location.search)
+  var movieId = params.get("movieID")
   let detailsURL = 'https://api.themoviedb.org/3/movie/' + movieId + '?&api_key=d49378c8d91fbf3feb27659eb9dad49e'
 
   var detailsData = fetchData(detailsData, detailsURL)
@@ -134,6 +136,7 @@ function handlePosterClick(){
       var currentUrl = new URL(window.location.href);
       currentUrl.searchParams.set('movieID', event.target.getAttribute('data-movieID'))
       window.history.replaceState({}, document.title, currentUrl)
+      document.location.href = './details.html?movieID=' + event.target.getAttribute('data-movieID')
 
     }) 
 })}
@@ -156,5 +159,11 @@ if(window.location.href.includes('search.html')){
       window.onload = searchForMovie
       })
 }
+// Only runds this code if on details page
+if(window.location.href.includes('details.html')){
+  window.onload = fetchDetails
+}
+
+
 handlePosterClick()
 document.querySelector('#title-card').addEventListener('click', handleTitleClick)
