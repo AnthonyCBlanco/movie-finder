@@ -30,7 +30,7 @@ async function fetchData(obj, url) {
    let trendingMovies; 
    trendingMovies = await fetchData(trendingMovies, trendingMoviesUrl)
    console.log(trendingMovies.results)
-      for(var i = 0; i < 6; i++){
+      for(var i = 0; i < 13; i++){
          let trendingMoivePosterUrl = 'https://image.tmdb.org/t/p/w500/' + trendingMovies.results[i].poster_path
          document.querySelector(".movie-poster"+i).src = trendingMoivePosterUrl    
       }
