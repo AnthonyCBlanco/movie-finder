@@ -1,4 +1,5 @@
  const TMDBapikey = 'd49378c8d91fbf3feb27659eb9dad49e'
+ const youtubeApiKey = 'AIzaSyCmgrUIFOh3Uvspmi-xHKA5vEFRZ5LKwec'
 
 // onClick Display movie details
 
@@ -111,7 +112,7 @@ if(window.location.href.includes('search.html')){
       window.onload = searchForMovie
       })
 }
-// Execute a search when the user presses a key on the keyboard
+// Execute a search when the user presses the 'enter' key on the keyboard
 var input = document.getElementById("searchinput");
 
 input.addEventListener("keypress", function(event) {
@@ -120,8 +121,5 @@ input.addEventListener("keypress", function(event) {
     document.getElementById("search-btn").click();
   }
 });
-
-
-
 
 document.querySelector('#title-card').addEventListener('click', handleTitleClick)
