@@ -6,49 +6,86 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <link rel="stylesheet" href="./assets/css/style.css" />
   <title>Movie Finder</title>
 </head>
-<body class="has-background-dark">
-    <header class="columns is-gapless has-background-warning is-justify-content-center">
+<body>
+    <header class="columns is-gapless is-justify-content-center">
       <div class="level">
         <div class="column is-flex is-align-self-start">
-          <button id="search-btn-to-search" class="button">Looking For Something Else?</button>
+          <button id="search-btn-to-search" class="button is-rounded is-hovered"><span class="material-symbols-outlined">explore</span></button>
         </div>
         <div class="column is-full">
-          <h1 class="title level-item">Movie Finder!</h1>
+          <h1 class="title level-item" id="title-card">Movie Finder!</h1>
         </div>
       </div>
     </header>
-    <div class="container is-fullheight has-background-dark">
-      <div class="trending-movies columns">
-        <div class="column is-one-fifth">
+    <div class="container is-fullheight">
+      <div class="trending-movies columns is-multiline">
+        <div class="column is-one-quarter">
           <div class="box">                     
-            <img src="" class="movie-poster0 image" data-movieID="">
+            <img src="" class="movie-poster0 image poster" data-movieID="">
           </div>
         </div>
-        <div class="column is-one-fifth">
+        <div class="column is-one-quarter">
           <div class="box">
-            <img src="" class="movie-poster1 image "data-movieID="">
+            <img src="" class="movie-poster1 image poster"data-movieID="">
           </div>
         </div>
-        <div class="column is-one-fifth">
+        <div class="column is-one-quarter">
           <div class="box">
-            <img src="" class="movie-poster2 image "data-movieID="">
+            <img src="" class="movie-poster2 image poster"data-movieID="">
           </div>
         </div>
-        <div class="column is-one-fifth">
+        <div class="column is-one-quarter">
           <div class="box">
-            <img src="" class="movie-poster3 image "data-movieID="">
+            <img src="" class="movie-poster3 image poster"data-movieID="">
           </div>
         </div>
-        <div class="column is-one-fifth">
+        <div class="column is-one-quarter">
           <div class="box">
-            <img src="" class="movie-poster4 image "data-movieID="">
+            <img src="" class="movie-poster4 image poster"data-movieID="">
           </div>
         </div>      
+        <div class="column is-one-quarter">
+          <div class="box">
+            <img src="" class="movie-poster5 image poster"data-movieID="">
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="box">
+            <img src="" class="movie-poster6 image poster"data-movieID="">
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="box">
+            <img src="" class="movie-poster7 image poster"data-movieID="">
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="box">
+            <img src="" class="movie-poster8 image poster"data-movieID="">
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="box">
+            <img src="" class="movie-poster9 image poster"data-movieID="">
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="box">
+            <img src="" class="movie-poster10 image poster"data-movieID="">
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="box">
+            <img src="" class="movie-poster11 image poster"data-movieID="">
+          </div>
+        </div>
+
+        </div>     
       </div>
-    </div>
 
     <script src="./assets/js/index.js"></script>
 

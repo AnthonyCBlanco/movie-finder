@@ -1,4 +1,27 @@
  const TMDBapikey = 'd49378c8d91fbf3feb27659eb9dad49e'
+const ytApiKey = 'AIzaSyCmgrUIFOh3Uvspmi-xHKA5vEFRZ5LKwec'
+
+
+// Moving carousel for trending movies
+// const scrollers = document.querySelectorAll('.scroller');
+// if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+//   addAnimation();
+// }
+
+// function addAnimation(){
+//   scrollers.forEach((scroller) =>{
+//     scroller.setAttribute("data-animated", true);
+
+//     const scrollerInner = scroller.querySelector('.scroller_inner');
+//     const scrollerContent = Array.from(scrollerInner.children);
+
+//     scrollerContent.forEach(item => {
+//       const duplicatedItem = item.cloneNode(true);
+//       duplicatedItem.setAttribute('aria-hidden', true);
+//       scrollerInner.appendChild(duplicatedItem);
+//     });
+//   });
+// }
 
 // onClick Display movie details
 
@@ -30,9 +53,10 @@ async function fetchData(obj, url) {
    let trendingMovies; 
    trendingMovies = await fetchData(trendingMovies, trendingMoviesUrl)
    console.log(trendingMovies.results)
-      for(var i = 0; i < 6; i++){
+      for(var i = 0; i < 12; i++){
          let trendingMoivePosterUrl = 'https://image.tmdb.org/t/p/w500/' + trendingMovies.results[i].poster_path
-         document.querySelector(".movie-poster"+i).src = trendingMoivePosterUrl    
+         document.querySelector(".movie-poster"+i).src = trendingMoivePosterUrl  
+         document.querySelector(".movie-poster"+i).setAttribute('data-movieID', trendingMovies.results[i].id)  
       }
 }
 
@@ -92,11 +116,23 @@ movieDetails = fetchData(movieDetails, 'https://api.themoviedb.org/3/movie/10035
 console.log(movieDetails)
 
 
+function handleTitleClick(){
+  document.location.href = './index.html'
+}
 
 
+// Poster Event Handler
+var imgEl = document.querySelectorAll('.poster')
+imgEl.forEach(poster =>{
+  poster.addEventListener('click', function(event){
+    console.log('btn clicked')
+    console.log(event.target.getAttribute('data-movieID'))
+    var currentUrl = new URL(window.location.href);
+    currentUrl.searchParams.set('movieID', event.target.getAttribute('data-movieID'))
+    window.history.replaceState({}, document.title, currentUrl)
 
-
-
+  }) 
+})
 
 var currentPage = window.location.pathname
 // Only runs this code if on Main Page
@@ -117,6 +153,4 @@ if(window.location.href.includes('search.html')){
       })
 }
 
-
-
-
+document.querySelector('#title-card').addEventListener('click', handleTitleClick)
