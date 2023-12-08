@@ -89,13 +89,16 @@ async function searchForMovie(){
       var li = document.createElement('li')
       var img = document.createElement('img')
       li.textContent = searchData.results[i].title
-      li.setAttribute('class', 'column is-one-quarter is')
+      li.setAttribute('class', 'column is-one-quarter is ')
+      img.setAttribute('class', 'poster')
+      img.setAttribute('data-movieID', searchData.results[i].id)
       img.src = 'https://image.tmdb.org/t/p/w500/' + searchData.results[i].poster_path
       li.append(img)
       searchResultsContainer.append(li)
     }
 
   console.log(searchData)
+  handlePosterClick()
 }
 
 // Fetchs details of Selected Movie And Builds The Details Page
@@ -115,24 +118,25 @@ var movieDetails
 movieDetails = fetchData(movieDetails, 'https://api.themoviedb.org/3/movie/1003598?&api_key=d49378c8d91fbf3feb27659eb9dad49e')
 console.log(movieDetails)
 
-
+//Brings User Back To Main Page Upon Clicking The Title Card
 function handleTitleClick(){
   document.location.href = './index.html'
 }
 
 
-// Poster Event Handler
-var imgEl = document.querySelectorAll('.poster')
-imgEl.forEach(poster =>{
-  poster.addEventListener('click', function(event){
-    console.log('btn clicked')
-    console.log(event.target.getAttribute('data-movieID'))
-    var currentUrl = new URL(window.location.href);
-    currentUrl.searchParams.set('movieID', event.target.getAttribute('data-movieID'))
-    window.history.replaceState({}, document.title, currentUrl)
+// Poster Event Handler/Takes User To Details Page of the Selected Movie
+function handlePosterClick(){
+  var imgEl = document.querySelectorAll('.poster')
+  imgEl.forEach(poster =>{
+    poster.addEventListener('click', function(event){
+      console.log('btn clicked')
+      console.log(event.target.getAttribute('data-movieID'))
+      var currentUrl = new URL(window.location.href);
+      currentUrl.searchParams.set('movieID', event.target.getAttribute('data-movieID'))
+      window.history.replaceState({}, document.title, currentUrl)
 
-  }) 
-})
+    }) 
+})}
 
 var currentPage = window.location.pathname
 // Only runs this code if on Main Page
@@ -152,5 +156,5 @@ if(window.location.href.includes('search.html')){
       window.onload = searchForMovie
       })
 }
-
+handlePosterClick()
 document.querySelector('#title-card').addEventListener('click', handleTitleClick)
