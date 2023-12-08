@@ -102,6 +102,10 @@ function fetchDetails(movieId){
 
 }
 
+function handleTitleClick(){
+  document.location.href = './index.html'
+}
+
 
 var movieDetails
 movieDetails = fetchData(movieDetails, 'https://api.themoviedb.org/3/movie/1003598?&api_key=d49378c8d91fbf3feb27659eb9dad49e')
@@ -120,7 +124,7 @@ if(currentPage.endsWith('index.html') || currentPage.endsWith('movie-finder/')){
   trendingBuildCarousel()
   var homesearchBtnEl = document.querySelector('#search-btn-to-search')
   homesearchBtnEl.addEventListener('click', function(){
-    document.location.href = './search.html'
+  document.location.href = './search.html'
   })
 }
 
@@ -132,3 +136,7 @@ if(window.location.href.includes('search.html')){
       window.onload = searchForMovie
       })
 }
+
+document.querySelector('#title-card').addEventListener('click', handleTitleClick)
+  
+
