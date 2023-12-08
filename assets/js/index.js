@@ -31,7 +31,7 @@ async function fetchData(obj, url) {
    let trendingMovies; 
    trendingMovies = await fetchData(trendingMovies, trendingMoviesUrl)
    console.log(trendingMovies.results)
-      for(var i = 0; i < 13; i++){
+      for(var i = 0; i < 12; i++){
          let trendingMoivePosterUrl = 'https://image.tmdb.org/t/p/w500/' + trendingMovies.results[i].poster_path
          document.querySelector(".movie-poster"+i).src = trendingMoivePosterUrl  
          document.querySelector(".movie-poster"+i).setAttribute('data-movieID', trendingMovies.results[i].id)  
@@ -133,6 +133,13 @@ if(window.location.href.includes('search.html')){
       event.preventDefault()
       searchForMovie()
       window.onload = searchForMovie
+        var input = document.getElementById("searchinput");
+        input.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("search-btn").click();
+    }
+});
       })
 }
 
@@ -142,14 +149,7 @@ if(window.location.href.includes('details.html')){
 }
 
 // Execute a search when the user presses the 'enter' key on the keyboard
-var input = document.getElementById("searchinput");
 
-input.addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    document.getElementById("search-btn").click();
-  }
-});
 
 
 handlePosterClick()
