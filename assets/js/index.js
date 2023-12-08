@@ -133,12 +133,12 @@ if(window.location.href.includes('search.html')){
       event.preventDefault()
       searchForMovie()
       window.onload = searchForMovie
-      var input = document.getElementById("searchinput");
-      input.addEventListener("keypress", function(event) {
-      if (event.key === "Enter") {
-      event.preventDefault();
-      document.getElementById("search-btn").click();
-  }
+        var input = document.getElementById("searchinput");
+        input.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("search-btn").click();
+    }
 });
       })
 }
