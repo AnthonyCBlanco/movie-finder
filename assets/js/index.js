@@ -78,29 +78,36 @@ async function searchForMovie(){
 }
 
 // Fetchs details of Selected Movie And Builds The Details Page
-function fetchDetails(){
-  const movieEl = document.querySelector('.poster')
-  const descriptionEl = document.querySelector('.description')
-  const castEl = document.querySelector('.cast')
+async function fetchDetails(){
+  const movieposterEl = document.querySelector('#movie-poster')
+  const descriptionEl = document.querySelector('#movie-summary')
+  const titleEl       = document.querySelector('#movie-title')
+  const releaseEl     = document.querySelector('#movie-release')
+  
+
   var params = new URLSearchParams(document.location.search)
   var movieId = params.get("movieID")
   let detailsURL = 'https://api.themoviedb.org/3/movie/' + movieId + '?&api_key=d49378c8d91fbf3feb27659eb9dad49e'
 
-  var detailsData = fetchData(detailsData, detailsURL)
+  var detailsData = await fetchData(detailsData, detailsURL)
+  console.log(detailsData)
+
+  movieposterEl.src         = 'https://image.tmdb.org/t/p/w500/' + detailsData.poster_path
+  descriptionEl.textContent = detailsData.overview
+  titleEl.textContent       = detailsData.title
+  releaseEl.textContent     = detailsData.release_date
+  
+
+  
 
 }
 
 
-
-var movieDetails
-movieDetails = fetchData(movieDetails, 'https://api.themoviedb.org/3/movie/1003598?&api_key=d49378c8d91fbf3feb27659eb9dad49e')
-console.log(movieDetails)
 
 //Brings User Back To Main Page Upon Clicking The Title Card
 function handleTitleClick(){
   document.location.href = './index.html'
 }
-
 
 // Poster Event Handler/Takes User To Details Page of the Selected Movie
 function handlePosterClick(){
@@ -146,11 +153,13 @@ if(window.location.href.includes('search.html')){
 // Only runds this code if on details page
 if(window.location.href.includes('details.html')){
   window.onload = fetchDetails
+  var homesearchBtnEl = document.querySelector('#search-btn-to-search')
+  homesearchBtnEl.addEventListener('click', function(){
+    document.location.href = './search.html'
+  })
 }
 
 // Execute a search when the user presses the 'enter' key on the keyboard
-
-
 
 handlePosterClick()
 document.querySelector('#title-card').addEventListener('click', handleTitleClick)
