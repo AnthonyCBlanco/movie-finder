@@ -85,7 +85,9 @@ movieDetails = fetchData(movieDetails, 'https://api.themoviedb.org/3/movie/10035
 console.log(movieDetails)
 
 
-
+function handleTitleClick(){
+  document.location.href = './index.html'
+}
 
 
 
@@ -113,3 +115,5 @@ if(window.location.href.includes('search.html')){
 
 
 
+
+document.querySelector('#title-card').addEventListener('click', handleTitleClick)
