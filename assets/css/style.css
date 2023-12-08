@@ -134,3 +134,7 @@ h1 {
     float:left;
     display:inline-flex;
 }
+
+#title-card{
+    cursor: pointer;
+}
