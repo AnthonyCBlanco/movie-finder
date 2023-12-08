@@ -76,8 +76,15 @@ async function searchForMovie(){
 
 // Fetchs details of Selected Movie And Builds The Details Page
 function fetchDetails(movieId){
+  const movieEl = document.querySelector('.poster')
+  const descriptionEl = document.querySelector('.description')
+  const castEl = document.querySelector('.cast')
+  let detailsURL = 'https://api.themoviedb.org/3/movie/' + movieId + '?&api_key=d49378c8d91fbf3feb27659eb9dad49e'
+
+  var detailsData = fetchData(detailsData, detailsURL)
 
 }
+
 
 
 var movieDetails
