@@ -33,13 +33,12 @@ async function fetchData(obj, url) {
    console.log(trendingMovies.results)
       for(var i = 0; i < 13; i++){
          let trendingMoivePosterUrl = 'https://image.tmdb.org/t/p/w500/' + trendingMovies.results[i].poster_path
-         document.querySelector(".movie-poster"+i).src = trendingMoivePosterUrl    
+         document.querySelector(".movie-poster"+i).src = trendingMoivePosterUrl  
+         document.querySelector(".movie-poster"+i).setAttribute('data-movieID', trendingMovies.results[i].id)  
       }
 }
 
 const searchBtnEl = document.querySelector('#search-btn')
-
-
 
 //searches for TMDB with input from search box
 
@@ -66,33 +65,57 @@ async function searchForMovie(){
       var li = document.createElement('li')
       var img = document.createElement('img')
       li.textContent = searchData.results[i].title
-      li.setAttribute('class', 'column is-one-quarter is')
+      li.setAttribute('class', 'column is-one-quarter is ')
+      img.setAttribute('class', 'poster')
+      img.setAttribute('data-movieID', searchData.results[i].id)
       img.src = 'https://image.tmdb.org/t/p/w500/' + searchData.results[i].poster_path
       li.append(img)
       searchResultsContainer.append(li)
     }
 
   console.log(searchData)
+  handlePosterClick()
 }
 
 // Fetchs details of Selected Movie And Builds The Details Page
-function fetchDetails(movieId){
+function fetchDetails(){
+  const movieEl = document.querySelector('.poster')
+  const descriptionEl = document.querySelector('.description')
+  const castEl = document.querySelector('.cast')
+  var params = new URLSearchParams(document.location.search)
+  var movieId = params.get("movieID")
+  let detailsURL = 'https://api.themoviedb.org/3/movie/' + movieId + '?&api_key=d49378c8d91fbf3feb27659eb9dad49e'
+
+  var detailsData = fetchData(detailsData, detailsURL)
 
 }
+
 
 
 var movieDetails
 movieDetails = fetchData(movieDetails, 'https://api.themoviedb.org/3/movie/1003598?&api_key=d49378c8d91fbf3feb27659eb9dad49e')
 console.log(movieDetails)
 
-
+//Brings User Back To Main Page Upon Clicking The Title Card
 function handleTitleClick(){
   document.location.href = './index.html'
 }
 
 
+// Poster Event Handler/Takes User To Details Page of the Selected Movie
+function handlePosterClick(){
+  var imgEl = document.querySelectorAll('.poster')
+  imgEl.forEach(poster =>{
+    poster.addEventListener('click', function(event){
+      console.log('btn clicked')
+      console.log(event.target.getAttribute('data-movieID'))
+      var currentUrl = new URL(window.location.href);
+      currentUrl.searchParams.set('movieID', event.target.getAttribute('data-movieID'))
+      window.history.replaceState({}, document.title, currentUrl)
+      document.location.href = './details.html?movieID=' + event.target.getAttribute('data-movieID')
 
-
+    }) 
+})}
 
 var currentPage = window.location.pathname
 // Only runs this code if on Main Page
@@ -112,6 +135,12 @@ if(window.location.href.includes('search.html')){
       window.onload = searchForMovie
       })
 }
+
+// Only runds this code if on details page
+if(window.location.href.includes('details.html')){
+  window.onload = fetchDetails
+}
+
 // Execute a search when the user presses the 'enter' key on the keyboard
 var input = document.getElementById("searchinput");
 
@@ -122,4 +151,6 @@ input.addEventListener("keypress", function(event) {
   }
 });
 
+
+handlePosterClick()
 document.querySelector('#title-card').addEventListener('click', handleTitleClick)
