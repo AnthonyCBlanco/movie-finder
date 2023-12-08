@@ -10,6 +10,36 @@
     height: 30px;
 }
 
+#search-btn{
+    height: 30px;
+}
+
+#search-btn-to-search{
+    background-color: #76C893;
+}
+
+.title {
+    color: #B5E48C;
+    background-color: #184E77;
+
+}
+
+body { 
+    background-color: #1A759F;
+}
+
+header {
+    background-color: #184E77;
+}
+
+.container {
+    background-color: #1A759F;
+}
+
+.box {
+    background-color: #34A0A4;
+}
+
 /* .scroller {
     max-width: 600px;
     border: 3px solid lime;
