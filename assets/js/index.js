@@ -150,7 +150,7 @@ if(window.location.href.includes('search.html')){
       })
 }
 
-// Only runds this code if on details page
+// Only runs this code if on details page
 if(window.location.href.includes('details.html')){
   window.onload = fetchDetails
   var homesearchBtnEl = document.querySelector('#search-btn-to-search')
