@@ -41,7 +41,6 @@ async function fetchData(obj, url) {
 const searchBtnEl = document.querySelector('#search-btn')
 
 //searches for TMDB with input from search box
-
 async function searchForMovie(){ 
   var searchResultsContainer = document.querySelector('#search-results')
   searchResultsContainer.innerHTML = "" 
@@ -83,6 +82,7 @@ async function fetchDetails(){
   const descriptionEl = document.querySelector('#movie-summary')
   const titleEl       = document.querySelector('#movie-title')
   const releaseEl     = document.querySelector('#movie-release')
+  const movieTrailerEl= document.querySelector('#movie-trailer')
   
 
   var params = new URLSearchParams(document.location.search)
@@ -96,10 +96,27 @@ async function fetchDetails(){
   descriptionEl.textContent = detailsData.overview
   titleEl.textContent       = detailsData.title
   releaseEl.textContent     = detailsData.release_date
-  
+  movieTrailerEl.src        = 'https://www.youtube.com/embed/' + await searchYouTube(detailsData.title + 'trailer')
+ 
 
-  
+}
 
+async function searchYouTube(query){
+  youtubeURL = 'https://www.googleapis.com/youtube/v3/search?'
+  const params = {
+    part: 'snippet',
+    q: query,
+    type: 'video',
+    key: youtubeApiKey,
+  };
+
+  const queryString = new URLSearchParams(params).toString();
+  const url = youtubeURL + queryString;
+
+  var youtubeSearchData;
+  youtubeSearchData = await fetchData(youtubeSearchData, url)
+  console.log(youtubeSearchData)
+  return(youtubeSearchData.items[0].id.videoId)
 }
 
 
