@@ -122,4 +122,19 @@ input.addEventListener("keypress", function(event) {
   }
 });
 
+// Add recently searched items to local storage and append them to the left column
+
+function renderLastSearched(){
+  var searchTitle = document.getElementById("searchinput");
+  var recentMovie = localStorage.getItem("movieTitle");
+
+  
+
+  if(searchForMovie()) {
+    localStorage.setItem("searchTitle,",JSON.stringify(searchTitle));
+  }
+
+}
+console.log(renderLastSearched());
+
 document.querySelector('#title-card').addEventListener('click', handleTitleClick)
