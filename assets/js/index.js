@@ -125,14 +125,31 @@ input.addEventListener("keypress", function(event) {
 // Add recently searched items to local storage and append them to the left column
 
 function renderLastSearched(){
-  var searchTitle = document.getElementById("searchinput");
-  var recentMovie = localStorage.getItem("movieTitle");
+  var searchTitleEl = document.getElementById("recentSearchColumn");
+  var recentMovie = localStorage.getItem("recentTitle");
+  var recentlistEl = document.querySelector(".recentList");
+  var inputValueEl = document.getElementById("searchinput");
+  var movieList = document.createElement("ul");
 
   
+  let recentSearch = [];
+  searchBtnEl.addEventListener('click', function(event){
+    event.preventDefault()
 
-  if(searchForMovie()) {
-    localStorage.setItem("searchTitle,",JSON.stringify(searchTitle));
-  }
+    recentSearch.unshift(inputValueEl.value);
+    localStorage.setItem("recentTitle", recentSearch)
+    console.log(recentSearch);
+
+    for(let i=0; i<recentSearch.length; i++) {
+      
+      var item = document.createElement("li");
+      item.appendChild(document.createTextNode(recentSearch[i]));
+      movieList.appendChild(item);
+    }
+  })
+return movieList;
+document.querySelector(".recentList").appendChild(movieList);
+
 
 }
 console.log(renderLastSearched());
