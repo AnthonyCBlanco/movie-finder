@@ -46,6 +46,12 @@ async function searchForMovie(){
   searchResultsContainer.innerHTML = "" 
   var currentUrl = new URL(window.location.href);
   var searchTerm = document.querySelector('.search-input').value
+  
+  recentSearchArr = JSON.parse(localStorage.getItem('History')) || [];
+  if(!searchTerm){console.log('please enter a search term'); return}
+  recentSearchArr.push(searchTerm)
+  localStorage.setItem('History', JSON.stringify(recentSearchArr))
+
   currentUrl.searchParams.set('searchTerm', searchTerm)
   window.history.replaceState({}, document.title, currentUrl)
   document.querySelector('#search_results_title').textContent = searchTerm
@@ -178,5 +184,29 @@ if(window.location.href.includes('details.html')){
 
 // Execute a search when the user presses the 'enter' key on the keyboard
 
-handlePosterClick()
+// Add recently searched items to local storage and append them to the left column
+
+function renderLastSearched(){
+  var recentSearchArr = JSON.parse(localStorage.getItem('History')) || [];
+  var searchTitleEl = document.getElementById("recentSearchColumn");
+  var recentMovie = localStorage.getItem("recentTitle");
+  var recentlistEl = document.querySelector(".recentList");
+  
+  var ul = document.createElement('ul');
+  recentSearchArr.forEach(function(item){
+    var li = document.createElement('li');
+    li.textContent = item;
+    ul.appendChild(li);
+  })
+  recentlistEl.appendChild(ul)
+}
+
+function handleLocalStorage(){
+  recentSearchArr = JSON.parse(localStorage.getItem('recentcities')) || [];
+  if(!city){console.log('please enter a city'); return}
+  recentcitiesArr.push(city)
+  localStorage.setItem('recentcities', JSON.stringify(recentcitiesArr))
+}
+console.log(renderLastSearched());
+
 document.querySelector('#title-card').addEventListener('click', handleTitleClick)
