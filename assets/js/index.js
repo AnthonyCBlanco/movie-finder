@@ -184,6 +184,17 @@ if(window.location.href.includes('details.html')){
 
 // Execute a search when the user presses the 'enter' key on the keyboard
 
+// Get the input field
+var input = document.getElementById("searchinput");
+
+// Execute a function when the user presses the "Enter" key on the keyboard
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("search-btn").click();
+  }
+});
+
 // Add recently searched items to local storage and append them to the left column
 
 function renderLastSearched(){
@@ -199,14 +210,14 @@ function renderLastSearched(){
     ul.appendChild(li);
   })
   recentlistEl.appendChild(ul)
-}
+};
 
-function handleLocalStorage(){
-  recentSearchArr = JSON.parse(localStorage.getItem('recentcities')) || [];
-  if(!city){console.log('please enter a city'); return}
-  recentcitiesArr.push(city)
-  localStorage.setItem('recentcities', JSON.stringify(recentcitiesArr))
-}
+// function handleLocalStorage(){
+//   recentSearchArr = JSON.parse(localStorage.getItem('recentcities')) || [];
+//   if(!city){console.log('please enter a city'); return}
+//   recentcitiesArr.push(city)
+//   localStorage.setItem('recentcities', JSON.stringify(recentcitiesArr))
+// }
 console.log(renderLastSearched());
 
 document.querySelector('#title-card').addEventListener('click', handleTitleClick)
