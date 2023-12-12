@@ -16,6 +16,8 @@ Finding a film has never been easier using the dedicated search field. Upon ente
 
 ![alt text](./assets/images/Screenshot%202023-12-07%20201935.png)
 ![alt text](./assets/images/Screenshot%202023-12-11%20163406.png)
+![alt text](./assets/images/Screenshot%202023-12-11%20180838.png)
+
 ## Credits
 
 Anthony Blanco
