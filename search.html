@@ -11,7 +11,7 @@
     </head>
 <body>
   <header class="columns is-gapless is-justify-content-center">
-    <div class="level">
+    <div class="level columns">
       <div class="column is-flex">
         <input class="input is-small search-input" type="text" placeholder="Search" id="searchinput">
         <button id="search-btn" class="button">Search</button>
@@ -21,7 +21,19 @@
       </div>
     </div>
   </header>
+  <div class="columns is-flex">
+    <div id="recentSearchColumn" class="column is is-3 has-text-black">
+      <p>Recently Searched:</p>
+      <br>
+      <div class="container is-align-items-center is-multiline is-centered">
+        <ul id="recentSearches" class="columns is-multiline is-centered">
 
+            
+
+        </ul>
+      </div>
+    </div>
+    <div class="column is-7">
       <script src="./assets/js/index.js"></script>
       <script src="./assets/js/search.js"></script>
       <div class="result-box has-text-centered my-4">
@@ -35,5 +47,7 @@
 
         </ul>
       </div>
+    </div>
+  </div>
 </body>
 </html>

@@ -1,8 +1,7 @@
  const TMDBapikey = 'd49378c8d91fbf3feb27659eb9dad49e'
  const youtubeApiKey = 'AIzaSyCmgrUIFOh3Uvspmi-xHKA5vEFRZ5LKwec'
 
-// onClick Display movie details
-
+ var recentMovie = JSON.parse(localStorage.getItem('History')) || [];
 
 
 
@@ -46,6 +45,11 @@ async function searchForMovie(){
   searchResultsContainer.innerHTML = "" 
   var currentUrl = new URL(window.location.href);
   var searchTerm = document.querySelector('.search-input').value
+  
+  // if(!searchTerm){console.log('please enter a search term'); return}
+  // recentSearchArr.push(searchTerm)
+  // localStorage.setItem('History', JSON.stringify(recentSearchArr))
+
   currentUrl.searchParams.set('searchTerm', searchTerm)
   window.history.replaceState({}, document.title, currentUrl)
   document.querySelector('#search_results_title').textContent = searchTerm
@@ -75,6 +79,30 @@ async function searchForMovie(){
   console.log(searchData)
   handlePosterClick()
 }
+
+// Add recently searched items to local storage and append them to the left column
+async function renderLastSearched(){
+  var recentMovie = JSON.parse(localStorage.getItem('History')) || [];
+  var recentSearchesContainer = document.querySelector("#recentSearches");
+  recentMovie = removeDuplicates(recentMovie)
+
+  for(var i = 0; i < recentMovie.length; i++){
+    let detailsURL = 'https://api.themoviedb.org/3/movie/' + recentMovie[i] + '?&api_key=d49378c8d91fbf3feb27659eb9dad49e'
+    var recentData = await fetchData(recentData, detailsURL)
+    console.log('Recent Searches', recentData)
+
+    var li = document.createElement('li')
+    var img = document.createElement('img')
+    li.textContent = recentData.title
+    li.setAttribute('class', 'column is-one-quarter is ')
+    img.setAttribute('class', 'poster')
+    img.setAttribute('data-movieID', recentData.id)
+    img.src = 'https://image.tmdb.org/t/p/w500/' + recentData.poster_path
+    li.append(img)
+    recentSearchesContainer.append(li)
+  }
+  handlePosterClick()
+};
 
 // Fetchs details of Selected Movie And Builds The Details Page
 async function fetchDetails(){
@@ -128,6 +156,7 @@ function handleTitleClick(){
 
 // Poster Event Handler/Takes User To Details Page of the Selected Movie
 function handlePosterClick(){
+  console.log('poster clicked')
   var imgEl = document.querySelectorAll('.poster')
   imgEl.forEach(poster =>{
     poster.addEventListener('click', function(event){
@@ -136,10 +165,21 @@ function handlePosterClick(){
       var currentUrl = new URL(window.location.href);
       currentUrl.searchParams.set('movieID', event.target.getAttribute('data-movieID'))
       window.history.replaceState({}, document.title, currentUrl)
+
+      recentMovie.push(event.target.getAttribute('data-movieID'))
+      localStorage.setItem('History', JSON.stringify(recentMovie))
+      
       document.location.href = './details.html?movieID=' + event.target.getAttribute('data-movieID')
 
     }) 
 })}
+
+function removeDuplicates(arr) {
+  const uniqueSet = new Set(arr);
+  const uniqueArray = Array.from(uniqueSet);
+
+  return uniqueArray;
+}
 
 var currentPage = window.location.pathname
 // Only runs this code if on Main Page
@@ -153,19 +193,20 @@ if(currentPage.endsWith('index.html') || currentPage.endsWith('movie-finder/')){
 
 // Only runs this code if on search page
 if(window.location.href.includes('search.html')){
-    searchBtnEl.addEventListener('click', function(event){
-      event.preventDefault()
-      searchForMovie()
-      window.onload = searchForMovie
+        searchBtnEl.addEventListener('click', function(event){
+        event.preventDefault()
+        searchForMovie()
+      })
+        window.onload = searchForMovie()
+        window.onload = renderLastSearched()
         var input = document.getElementById("searchinput");
         input.addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
         event.preventDefault();
         document.getElementById("search-btn").click();
-    }
-});
-      })
-}
+      }
+      });
+      }
 
 // Only runs this code if on details page
 if(window.location.href.includes('details.html')){
@@ -176,7 +217,10 @@ if(window.location.href.includes('details.html')){
   })
 }
 
-// Execute a search when the user presses the 'enter' key on the keyboard
+// Get the input field
+var input = document.getElementById("searchinput");
+
+
 
 handlePosterClick()
 document.querySelector('#title-card').addEventListener('click', handleTitleClick)
